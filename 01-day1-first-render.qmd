@@ -11,7 +11,8 @@ By the end of this day you should be able to:
 - Describe how a `.qmd` file relates to a `.Rmd` file at the
   level of syntax and engine.
 - Render an existing `.Rmd` document with Quarto, unchanged.
-- Choose among the RStudio, VS Code, and terminal workflows
+- Choose among the RStudio, Positron, VS Code, and terminal
+  workflows
   for editing and rendering.
 - Recognize the anatomy of a single-document Quarto project.
 
@@ -93,15 +94,22 @@ We observe that the output appears beside the source, as
 knitr would have produced it. That is the point of Day 1: the
 reader's existing work is already most of the way to Quarto.
 
-### RStudio, VS Code, and terminal workflows
+### RStudio, Positron, VS Code, and terminal workflows
 
-Quarto is editor-agnostic. We describe three workflows and let
+Quarto is editor-agnostic. We describe four workflows and let
 the reader choose:
 
 - **RStudio** renders on the Knit or Render button and offers
   a visual editor for `.qmd`.
+- **Positron**, Posit's next-generation data science IDE,
+  renders `.qmd` with a Render button and visual editor much as
+  RStudio does, and adds first-class support for R and Python
+  in a single session. Now that it has reached general
+  availability, it is a first-class option, and it suits
+  readers who expect to work across both languages (the subject
+  of the companion volume *Python for R Programmers*).
 - **VS Code** with the Quarto extension gives a live preview
-  and is the common choice for Python-inclusive projects.
+  and is a common choice for Python-inclusive projects.
 - **The terminal** with `quarto render` and `quarto preview`
   is editor-independent and is what this book shows.
 
