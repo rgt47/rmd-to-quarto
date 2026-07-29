@@ -106,6 +106,7 @@ csl: https://www.zotero.org/styles/apa
 
 execute:
   freeze: auto
+  eval: false
   echo: true
   warning: false
   message: false

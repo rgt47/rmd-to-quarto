@@ -108,9 +108,9 @@ Shared prose is factored into a file and pulled in with an
 include shortcode, so that boilerplate lives in one place.
 
 ```markdown
-{{< include _disclaimer.qmd >}}
+{{{< include _disclaimer.qmd >}}}
 
-{{< meta title >}}
+{{{< meta title >}}}
 ```
 
 ### Profiles
@@ -150,7 +150,7 @@ We factor the shared disclaimer into `_disclaimer.qmd` and
 include it on both pages:
 
 ```markdown
-{{< include _disclaimer.qmd >}}
+{{{< include _disclaimer.qmd >}}}
 ```
 
 We then build and preview the whole project:
