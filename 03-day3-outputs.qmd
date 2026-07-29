@@ -66,6 +66,22 @@ table with any R table package and add a caption.
 knitr::kable(summary(cars))
 ```
 
+::: {.callout-tip}
+## rgtlab tools for tables and figures
+
+Two packages in the rgtlab software suite address exactly this
+output-format problem. `zztable1`
+(<https://github.com/rgt47/zztable1>) produces publication-quality
+summary tables and detects the output format automatically,
+emitting LaTeX under the PDF format and HTML under the web format
+from a single call. `zzobj2fig`
+(<https://github.com/rgt47/zzobj2fig>) turns data frames and
+fitted model objects into journal-styled LaTeX tables and cropped
+PDF figures. Both drop into a `.qmd` code chunk unchanged, so the
+one-source-several-formats promise of this chapter extends to the
+tables as well as the prose.
+:::
+
 ### Native cross-references
 
 Here is the capability that most repays the transition. We
