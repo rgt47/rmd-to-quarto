@@ -1,0 +1,118 @@
+# Conventions {.unnumbered}
+
+This page summarizes the visual conventions used throughout
+the book.
+
+## Commands and output
+
+This book mixes terminal commands with document source. Shell
+commands appear in syntax-highlighted blocks. A command the
+reader types is shown after a `$` prompt; the prompt itself is
+not typed. Output appears on the following lines, without a
+prompt:
+
+```bash
+$ quarto --version
+1.5.57
+```
+
+When a sequence of commands is shown without output, the
+prompts are omitted for readability:
+
+```bash
+quarto render report.qmd
+quarto preview report.qmd
+```
+
+Inline commands, file names, and Quarto options are set in
+`monospace`. Quarto subcommands are named in full
+(`quarto render`, not merely `render`) so that they are
+unambiguous. Document source, including YAML front matter and
+executable cells, is shown in fenced blocks labeled by
+language:
+
+```yaml
+title: 'Baseline summary'
+format: html
+```
+
+Placeholders that the reader must replace with their own
+values are written in angle brackets, for example
+`quarto render <file>` or `quarto publish <target>`. The angle
+brackets are not typed.
+
+## Callouts
+
+Three callout types appear:
+
+::: {.callout-tip}
+## Tip
+
+A small practical recommendation.
+:::
+
+::: {.callout-note icon=false collapse=true}
+## Check your understanding: example
+
+A short question testing comprehension of the just-read
+material. Click to expand the answer.
+:::
+
+::: {.callout-warning}
+## Warning
+
+A pitfall the reader may otherwise hit, most often a
+difference from R Markdown that silently changes behavior.
+:::
+
+## Comparisons with R Markdown
+
+Because this book is a transition, we frequently place an R
+Markdown construct beside its Quarto equivalent. Such pairs
+are shown as two adjacent code blocks, the `.Rmd` form first
+and the `.qmd` form second, so that the reader can read the
+translation directly:
+
+```text
+R Markdown:  ```{r, echo=FALSE}
+Quarto:      ```{r}
+             #| echo: false
+```
+
+These comparisons are the spine of the book; where a construct
+transfers unchanged, we say so explicitly.
+
+## Cross-references
+
+Within this book, sections are referenced by their Quarto
+label (`@sec-day1`, `@sec-crossrefs`). These resolve to
+clickable links in HTML and section numbers in PDF. Figures
+and tables use the `@fig-` and `@tbl-` prefixes introduced on
+Day 3.
+
+References to the companion volumes *R for Biostatistics*,
+*Git and GitHub for Biostatistics*, and the *Biostatistics
+Practicum* use **prose pointers** rather than Quarto
+cross-references, because cross-references do not resolve
+across separate books. For example: 'see the publishing
+chapter of the companion *Git and GitHub for Biostatistics*
+volume'.
+
+## Chapter structure
+
+Every content chapter follows the same five-section template:
+
+1. **Learning objectives.** What you will be able to do after
+   the day.
+2. **Lecture.** The substantive content, with commands to run
+   and documents to render in your own environment as you
+   read.
+3. **Worked example.** A small but realistic authoring
+   scenario that uses the day's content end to end.
+4. **Homework.** Problems organized from easier to harder.
+5. **Solutions.** Worked solutions to all homework problems.
+   Read only after attempting the problem.
+
+Each chapter closes with a short **What's next** pointer. The
+pattern repeats deliberately; by the third chapter you know
+where to find each component.

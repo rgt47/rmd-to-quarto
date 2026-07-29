@@ -1,0 +1,148 @@
+# Preface {.unnumbered}
+
+This volume is a one-week workshop for analysts who already
+write R Markdown and wish to move their work to Quarto. It
+assumes fluency with the R Markdown they use every day:
+knitr chunks, YAML front matter, and rendering to HTML, PDF,
+and Word. Where a beginner's book would teach literate
+programming from nothing, this one teaches the translation
+from a tool the reader knows to one they do not yet. The
+goal is a working migration, not a first exposure.
+
+The design constraint is deliberate: five lectures, ten
+hours of homework, and the reader finishes the week able to
+render, extend, and publish Quarto documents and to migrate
+an existing R Markdown project. The constraint is met by
+building on what the reader already knows. Quarto shares R
+Markdown's Pandoc foundation and its knitr engine, so most
+of an `.Rmd` transfers unchanged. We spend our time on the
+differences that matter and on the capabilities that R
+Markdown lacked.
+
+## Why move from R Markdown to Quarto
+
+The case for the transition is not that R Markdown is broken.
+R Markdown continues to work, and existing documents will
+render for years. The case is that Quarto consolidates a
+scattered ecosystem into one tool. Consider three frictions
+that an R Markdown user has met:
+
+- Producing a slide deck, a website, and a PDF from related
+  content meant learning `xaringan`, `blogdown`, and
+  `bookdown` separately, each with its own conventions.
+- Cross-referencing a figure or a table required a package
+  extension and a syntax that differed by output format.
+- Sharing a document with a colleague who works in Python
+  meant that the R Markdown toolchain did not apply.
+
+Quarto addresses each directly: one command-line tool renders
+slides, sites, books, and articles; cross-references are
+native and uniform across formats; and the same document
+model serves R, Python, and Julia. An analyst who internalizes
+Quarto writes once and targets many outputs, which is what R
+Markdown promised and Quarto more fully delivers.
+
+## What this book covers
+
+Five days, one chapter each:
+
+1. **From R Markdown to Quarto, your first render.** Why
+   transition; installing Quarto and the command-line
+   interface; the `.qmd` format compared with `.Rmd`;
+   rendering an existing `.Rmd` unchanged; the RStudio, VS
+   Code, and terminal workflows; project anatomy.
+2. **Document anatomy: YAML, chunks, and the execution
+   model.** How the YAML front matter differs from R
+   Markdown; the `#|` cell-option syntax compared with
+   `knitr::opts_chunk`; execution options (`echo`, `eval`,
+   `warning`, `message`, `freeze`); the knitr and jupyter
+   engines; inline code.
+3. **Output formats, figures, tables, and
+   cross-references.** HTML, PDF, Word, and revealjs; figure
+   and table handling and captions; native cross-references
+   (`@fig-`, `@tbl-`, `@sec-`); citations and CSL; callouts
+   and margin content; theming.
+4. **Projects at scale: websites, books, and manuscripts.**
+   Quarto projects; `_quarto.yml`; websites and books; the
+   manuscript project type; parameterized reports; includes
+   and shortcodes; profiles.
+5. **Reproducibility, publishing, and migrating a real
+   project.** Freeze and caching; renv integration;
+   publishing with `quarto publish`, Netlify, GitHub Pages,
+   and Quarto Pub; continuous integration with GitHub
+   Actions; a systematic `.Rmd`-to-`.qmd` migration checklist
+   applied to a whole project.
+
+Each chapter is approximately 1 hour of reading and worked
+examples plus 2 hours of homework problems with worked
+solutions provided.
+
+## What this book does not cover
+
+The book deliberately omits, and points elsewhere for,
+material that surrounds the transition but is not the
+transition itself:
+
+- Learning R itself, or R Markdown from scratch. We assume
+  the reader arrives with both. See *R for Biostatistics*.
+- Version control with Git and GitHub. The publishing chapter
+  uses Git, but does not teach it. See *Git and GitHub for
+  Biostatistics*.
+- Containerized and dependency-pinned reproducibility in
+  depth (Docker, renv at scale, validated pipelines). See the
+  *Biostatistics Practicum* and *Reproducible Research for
+  the Health Sciences*.
+- Extension and filter authoring (Lua filters, custom
+  formats). We use extensions but do not write them.
+
+The workshop is intentionally narrow. The reader finishes Day
+5 able to work fluently in Quarto and to migrate a real
+project, leaving the follow-on volumes free to teach the
+infrastructure that surrounds it.
+
+## How this book is meant to be used
+
+The five-day cadence is the spine. A reader starting the week
+having never run `quarto render` can finish the week
+publishing a Quarto site. The cadence assumes roughly 3 hours
+of focused work per day:
+
+- **Hour 1:** Read the chapter, running every command in your
+  own terminal and rendering every document as you reach it.
+  Quarto is learned by rendering, not by reading.
+- **Hours 2-3:** Complete the homework problems. Solutions are
+  at the end of each chapter; check yourself only after
+  attempting each problem.
+
+The commands in this book are shown for a Unix-style shell
+(macOS Terminal, Linux, or Git Bash on Windows). Where a step
+differs on Windows, the difference is noted.
+
+## Prerequisites
+
+The book assumes:
+
+- A working laptop running macOS, Windows, or Linux, with a
+  recent R installation.
+- Practical familiarity with R Markdown: writing knitr
+  chunks, editing YAML front matter, and rendering to HTML,
+  PDF, or Word.
+- Basic familiarity with the command line: opening a
+  terminal, changing directories with `cd`, listing files
+  with `ls`.
+
+Prior completion of *R for Biostatistics* and *Git and GitHub
+for Biostatistics* is helpful, since the worked examples
+version Quarto projects and publish them, but neither is
+strictly required; the Quarto mechanics are independent of
+how the reader learned R or Git.
+
+## Acknowledgments
+
+This workshop consolidates patterns developed while migrating
+teaching and research materials from R Markdown to Quarto. The
+Quarto documentation at <https://quarto.org> and the writings
+of the R Markdown authors provide the technical scaffolding;
+the workshop pedagogy reflects experience with what an R
+Markdown user actually needs in order to make the transition,
+as distinct from the full capabilities of the tool.

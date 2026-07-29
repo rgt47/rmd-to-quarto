@@ -1,0 +1,232 @@
+# Day 3: Output Formats, Figures, Tables, and Cross-References {#sec-day3}
+
+## Learning objectives
+
+By the end of this day you should be able to:
+
+- Render one source document to HTML, PDF, Word, and revealjs.
+- Attach captions to figures and tables and control their
+  placement.
+- Cross-reference figures, tables, and sections natively with
+  `@fig-`, `@tbl-`, and `@sec-`.
+- Add citations from a `.bib` file and select a CSL style.
+- Place content in callouts and in the margin.
+- Apply a theme to an HTML document.
+
+## Lecture
+
+We begin with what R Markdown made awkward and Quarto makes
+uniform: producing many output formats from one source, and
+cross-referencing within them. That is, we write once and
+target several outputs.
+
+### One source, several formats
+
+Quarto renders to a format named in the YAML or on the command
+line. We list several under `format:` and select one at render
+time.
+
+```yaml
+format:
+  html: default
+  pdf: default
+  docx: default
+  revealjs: default
+```
+
+```bash
+quarto render report.qmd --to pdf
+quarto render report.qmd --to revealjs
+```
+
+We note that `revealjs` produces HTML slides from the same
+prose and chunks, replacing the separate `xaringan` toolchain
+an R Markdown user may have learned.
+
+### Figures and captions
+
+A figure gets a caption and a cross-reference label through
+chunk options. Recall that the label must begin with `fig-`
+for Quarto to treat it as a figure.
+
+```{r}
+#| label: fig-speed
+#| fig-cap: 'Stopping distance against speed'
+plot(cars)
+```
+
+### Tables and captions
+
+Tables work the same way with a `tbl-` label. We produce a
+table with any R table package and add a caption.
+
+```{r}
+#| label: tbl-summary
+#| tbl-cap: 'Summary of the cars dataset'
+knitr::kable(summary(cars))
+```
+
+### Native cross-references
+
+Here is the capability that most repays the transition. We
+reference a labeled figure, table, or section by an `@`
+prefix, and Quarto resolves it to a numbered, clickable link
+in every format.
+
+```markdown
+As @fig-speed shows, distance rises with speed; the
+values appear in @tbl-summary. See also @sec-day3.
+```
+
+We observe that the same syntax works in HTML and PDF, which
+in R Markdown required a package and format-specific care.
+
+### Citations and CSL
+
+Citations carry over from R Markdown with the same `@key`
+syntax against a `.bib` file. We select a citation style with
+a CSL file.
+
+```yaml
+bibliography: references.bib
+csl: https://www.zotero.org/styles/apa
+```
+
+```markdown
+Quarto builds on Pandoc and knitr [@xie2015knitr].
+```
+
+### Callouts and margin content
+
+Quarto adds semantic callouts and margin placement that R
+Markdown lacked. We note the callout block syntax and the
+margin-column attribute.
+
+```markdown
+::: {.callout-note}
+A short aside.
+:::
+
+::: {.column-margin}
+A note set in the margin.
+:::
+```
+
+### Theming
+
+An HTML document takes a Bootswatch theme and an optional
+`.scss` file, the same mechanism this book uses.
+
+```yaml
+format:
+  html:
+    theme: cosmo
+```
+
+## Worked example: a cross-referenced results section
+
+We extend `enrollment-report.qmd` into a short results section
+with one figure and one table, each cross-referenced, and one
+citation. Our task is to produce a document whose figure and
+table numbers and references stay consistent across HTML and
+PDF.
+
+We label the figure and table:
+
+```{r}
+#| label: fig-enroll-arm
+#| fig-cap: 'Enrollment count by treatment arm'
+barplot(table(c('A', 'A', 'B')))
+```
+
+```{r}
+#| label: tbl-baseline
+#| tbl-cap: 'Baseline characteristics by arm'
+knitr::kable(head(cars, 3))
+```
+
+We then write prose that references both and cites a source:
+
+```markdown
+@fig-enroll-arm shows enrollment by arm, and
+@tbl-baseline reports baseline characteristics. The
+reporting approach follows established practice
+[@xie2020cookbook].
+```
+
+We render to HTML and to PDF:
+
+```bash
+quarto render enrollment-report.qmd --to html
+quarto render enrollment-report.qmd --to pdf
+```
+
+We observe that the figure is numbered and the reference reads
+'Figure 1' in both outputs, with the numbering managed by
+Quarto rather than by hand. The citation resolves against
+`references.bib` and appears in the reference list in the
+selected APA style. The report now carries the output features
+that R Markdown provided only through several separate
+packages.
+
+## Homework
+
+Attempt each problem in your own environment before checking
+the solution.
+
+1. **Two formats.** Render a document to both HTML and Word.
+   Name the two output files and note any content that
+   rendered differently.
+
+2. **Caption a figure.** Add a labeled, captioned figure to a
+   document and confirm the caption appears beneath it.
+
+3. **Cross-reference it.** Reference the figure from Problem 2
+   in prose with `@fig-...` and confirm the rendered link
+   reads 'Figure 1'.
+
+4. **Caption and reference a table.** Add a captioned table
+   with a `tbl-` label and reference it in prose.
+
+5. **Add a citation.** Create a two-entry `references.bib`,
+   cite one entry with `@key`, and render. Confirm the
+   reference list appears.
+
+6. **Make a callout.** Add a `callout-tip` block and a
+   margin note to a document and render both.
+
+7. **Slides from prose.** Render an existing short document to
+   `revealjs` and describe how the section headings map to
+   slides.
+
+## Solutions
+
+**Problem 1.** Placeholder. Name `report.html` and
+`report.docx` and comment on format differences.
+
+**Problem 2.** Placeholder. Show the `#| label: fig-...` and
+`#| fig-cap:` options and confirm the caption.
+
+**Problem 3.** Placeholder. Show the `@fig-...` reference
+resolving to 'Figure 1'.
+
+**Problem 4.** Placeholder. Show the `tbl-` label, `tbl-cap`,
+and the `@tbl-...` reference.
+
+**Problem 5.** Placeholder. Give the two-entry `.bib`, the
+`@key` citation, and confirm the reference list.
+
+**Problem 6.** Placeholder. Show the `callout-tip` and
+`column-margin` blocks.
+
+**Problem 7.** Placeholder. Describe headings becoming slide
+boundaries under `revealjs`.
+
+## What's next
+
+Day 4 scales up from one document to a project. We shall
+configure a project with `_quarto.yml`, build a website and a
+book, use the manuscript project type, parameterize a report,
+and factor shared content with includes, shortcodes, and
+profiles. Keep `enrollment-report.qmd`; Day 4 folds it into a
+small project.

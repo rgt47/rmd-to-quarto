@@ -1,0 +1,16 @@
+# Credits {.unnumbered}
+
+The chapter list was constructed by surveying publicly
+available Quarto migration guides and teaching materials,
+including the official Quarto documentation at
+<https://quarto.org>, the R Markdown to Quarto transition
+notes maintained by the Quarto project, and course modules
+that adopt Quarto for reproducible reporting, and adopting the
+topics common to the majority of them.
+
+Cover artwork generated procedurally by the R script at
+`images/build-cover.R`. Watercolor palette: deep slate
+through steel and sky to pale mist, anchored on a brand blue
+`#39729e` chosen to echo the Quarto project's signature blue.
+Typography: Avenir family (Apple system font); body text in
+Source Serif 4.

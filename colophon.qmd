@@ -1,0 +1,25 @@
+# Colophon {.unnumbered}
+
+This book was produced with [Quarto](https://quarto.org),
+typeset in [Source Serif 4](https://fonts.adobe.com/fonts/source-serif),
+with code blocks set in [JetBrains
+Mono](https://www.jetbrains.com/lp/mono/). The command
+examples target Quarto 1.5 or later and a recent R
+installation with the `rmarkdown` and `knitr` packages.
+
+The book is hosted at <https://rmd-to-quarto.rgtlab.org>
+on Netlify, with continuous deployment via GitHub Actions
+from the `rgt47/rmd-to-quarto` repository on every push to
+`main`.
+
+The cover is generated procedurally by
+`images/build-cover.R` from a watercolor gradient anchored
+on `#39729e` (the volume's brand blue) and overlaid with
+Avenir typography. Re-running the script regenerates the
+cover; the procedural approach makes the cover reproducible
+and editable in version control rather than dependent on a
+one-shot image-generation step. That the cover of a book
+about reproducible authoring is itself a versioned, scripted
+artifact is deliberate.
+
+Last rendered: see the build timestamp on the homepage.

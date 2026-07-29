@@ -1,0 +1,219 @@
+# Day 1: From R Markdown to Quarto, Your First Render {#sec-day1}
+
+## Learning objectives
+
+By the end of this day you should be able to:
+
+- Explain why an R Markdown user might move to Quarto, and
+  what does and does not transfer.
+- Install Quarto and confirm the installation with
+  `quarto --version` and `quarto check`.
+- Describe how a `.qmd` file relates to a `.Rmd` file at the
+  level of syntax and engine.
+- Render an existing `.Rmd` document with Quarto, unchanged.
+- Choose among the RStudio, VS Code, and terminal workflows
+  for editing and rendering.
+- Recognize the anatomy of a single-document Quarto project.
+
+## Lecture
+
+We begin with the question that motivates the week. Why should
+an analyst who is already productive in R Markdown move to
+Quarto at all? We answer it, install the tool, and render a
+document we already have.
+
+### Why transition, and what carries over
+
+Quarto is not a rewrite of R Markdown so much as a
+generalization of it. It keeps the knitr engine and the
+Pandoc back end, so the mental model the reader already holds
+still applies. That is, a `.qmd` document is read by the same
+knitr that reads an `.Rmd`, and the same Pandoc that produced
+the reader's HTML and PDF still produces Quarto's. We note
+that most of an existing `.Rmd` renders under Quarto with no
+change at all. What Quarto adds is a uniform command-line
+interface, native cross-references, and one project model for
+many output types.
+
+### Installing Quarto and the command-line interface
+
+Quarto is a standalone program, not an R package. We install
+it once from <https://quarto.org> and drive it from a
+terminal.
+
+```bash
+# macOS with Homebrew; or download the installer from
+# https://quarto.org/docs/get-started
+brew install --cask quarto
+```
+
+Confirm the installation and inspect the environment Quarto
+sees:
+
+```bash
+quarto --version
+quarto check
+```
+
+We note that `quarto check` reports the R, knitr, and (if
+present) Python and Jupyter installations Quarto will use. It
+is the first command to run when a render misbehaves.
+
+### The .qmd format compared with .Rmd
+
+A `.qmd` file looks almost identical to a `.Rmd` file: YAML
+front matter, prose in Markdown, and executable code chunks.
+The visible differences are small on Day 1 and are the subject
+of Day 2. Recall that in R Markdown, chunk options sit on the
+chunk header line; in Quarto they move inside the chunk on
+`#|` comment lines.
+
+```yaml
+---
+title: 'Baseline summary'
+format: html
+---
+```
+
+```{r}
+#| label: load-data
+summary(cars)
+```
+
+### Rendering an existing .Rmd unchanged
+
+The most reassuring first exercise is to render a document the
+reader already owns. Quarto renders `.Rmd` files directly.
+
+```bash
+quarto render existing-report.Rmd
+```
+
+We observe that the output appears beside the source, as
+knitr would have produced it. That is the point of Day 1: the
+reader's existing work is already most of the way to Quarto.
+
+### RStudio, VS Code, and terminal workflows
+
+Quarto is editor-agnostic. We describe three workflows and let
+the reader choose:
+
+- **RStudio** renders on the Knit or Render button and offers
+  a visual editor for `.qmd`.
+- **VS Code** with the Quarto extension gives a live preview
+  and is the common choice for Python-inclusive projects.
+- **The terminal** with `quarto render` and `quarto preview`
+  is editor-independent and is what this book shows.
+
+```bash
+quarto preview report.qmd
+```
+
+### Project anatomy
+
+A single document needs no project, but understanding the
+minimal project anatomy now pays off on Day 4. We note the
+pieces: the `.qmd` source, an optional `_quarto.yml`
+configuration, and the rendered output directory.
+
+```text
+report/
+  report.qmd        # source
+  _quarto.yml       # optional project configuration
+  report.html       # rendered output
+```
+
+## Worked example: rendering a colleague's report under Quarto
+
+We consider a concrete scenario. A colleague hands us
+`enrollment-report.Rmd`, a knitr document that reads a CSV,
+prints a summary table, and draws one figure. Our task is to
+confirm it renders under Quarto and then save it as a `.qmd`
+so that later days can extend it.
+
+We begin by rendering the file as received:
+
+```bash
+quarto render enrollment-report.Rmd
+```
+
+The render succeeds and writes `enrollment-report.html`. We
+note that no source change was required, which confirms the
+claim from the lecture. Next we copy the file to a `.qmd`
+extension and open it:
+
+```bash
+cp enrollment-report.Rmd enrollment-report.qmd
+quarto preview enrollment-report.qmd
+```
+
+The preview opens in the browser and refreshes as we save. We
+have not yet changed the chunk-option syntax, and we do not
+need to; the `.Rmd`-style options still work. That translation
+is Day 2's work. For now, the colleague's report is a Quarto
+document that renders and previews, and we have lost nothing
+in the move.
+
+## Homework
+
+Attempt each problem in your own environment before checking
+the solution. Work in a scratch directory so that you can
+experiment freely.
+
+1. **Confirm your installation.** Run the commands that print
+   the Quarto version and check the environment. Record the
+   Quarto version and the R and knitr versions Quarto reports.
+
+2. **Render a minimal document.** Create a `hello.qmd` with a
+   title, one sentence of prose, and one R chunk that prints
+   `summary(cars)`. Render it to HTML and confirm the output
+   file appears.
+
+3. **Render an existing .Rmd.** Take any `.Rmd` you already
+   have (or write a two-chunk one) and render it with
+   `quarto render`. Did it require any change? Note anything
+   that differed from a knitr render.
+
+4. **Preview and live reload.** Run `quarto preview` on your
+   `hello.qmd`, edit the prose, and save. Describe what
+   happens in the browser.
+
+5. **Compare the formats.** Render `hello.qmd` to both HTML
+   and, if you have a LaTeX installation, PDF. Name the two
+   output files that result.
+
+6. **Read quarto check.** Run `quarto check` and read its
+   output. Which engines does it report as available, and
+   which (if any) does it report as missing?
+
+## Solutions
+
+**Problem 1.** Placeholder. Show `quarto --version` and
+`quarto check` output and identify the reported R and knitr
+versions.
+
+**Problem 2.** Placeholder. Give the minimal `hello.qmd`
+source and the `quarto render hello.qmd` invocation, and note
+that `hello.html` results.
+
+**Problem 3.** Placeholder. Confirm the `.Rmd` rendered with
+no change and comment on the near-identical output.
+
+**Problem 4.** Placeholder. Describe the automatic browser
+refresh produced by `quarto preview` on save.
+
+**Problem 5.** Placeholder. Show rendering to `html` and
+`pdf` and name `hello.html` and `hello.pdf`.
+
+**Problem 6.** Placeholder. Interpret the `quarto check`
+report of available and missing engines.
+
+## What's next
+
+Day 2 goes inside the document. We shall translate the R
+Markdown constructs that do differ under Quarto: the YAML
+front matter, the `#|` cell-option syntax that replaces
+`knitr::opts_chunk`, the execution options that control what
+runs and what shows, and the choice between the knitr and
+jupyter engines. Keep the `enrollment-report.qmd` from the
+worked example; Day 2 begins by tidying its chunk options.

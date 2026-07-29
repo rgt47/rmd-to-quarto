@@ -1,0 +1,230 @@
+# Day 4: Projects at Scale: Websites, Books, and Manuscripts {#sec-day4}
+
+## Learning objectives
+
+By the end of this day you should be able to:
+
+- Configure a multi-document Quarto project with
+  `_quarto.yml`.
+- Build a website project and a book project from a set of
+  `.qmd` files.
+- Use the manuscript project type for a scholarly article.
+- Parameterize a report and render it with different
+  parameters.
+- Factor shared content with includes and shortcodes.
+- Select build variants with profiles.
+
+## Lecture
+
+We begin where R Markdown's separate packages diverged.
+Producing a website meant `blogdown`, a book meant `bookdown`,
+and an article meant a journal template, each with its own
+configuration. Quarto unifies these under one project model.
+That is, one `_quarto.yml` and one command build any of them.
+
+### The project and `_quarto.yml`
+
+A project is a directory with a `_quarto.yml` file that names a
+type and collects shared settings. We note that render then
+operates on the whole directory rather than a single file.
+
+```yaml
+project:
+  type: website
+```
+
+```bash
+quarto render        # builds the whole project
+quarto preview       # serves it with live reload
+```
+
+### Websites
+
+A website project lists navigation and pages. Recall that
+`blogdown` required Hugo; Quarto needs no external site
+generator.
+
+```yaml
+project:
+  type: website
+website:
+  title: 'Analysis notes'
+  navbar:
+    left:
+      - href: index.qmd
+        text: Home
+      - about.qmd
+```
+
+### Books
+
+A book project collects chapters and produces HTML and PDF, as
+this volume does. We note that the structure matches what the
+reader is reading.
+
+```yaml
+project:
+  type: book
+book:
+  title: 'A short book'
+  chapters:
+    - index.qmd
+    - chapter1.qmd
+    - chapter2.qmd
+```
+
+### The manuscript project type
+
+For a scholarly article, the manuscript project type pairs a
+readable article with its computational notebook. We note that
+it targets journal submission with figures, tables, and
+cross-references in one source.
+
+```yaml
+project:
+  type: manuscript
+manuscript:
+  article: article.qmd
+```
+
+### Parameterized reports
+
+Quarto parameterizes a report through YAML `params`, the same
+idea R Markdown offered, and renders with overrides on the
+command line.
+
+```yaml
+params:
+  site: 'overall'
+```
+
+```bash
+quarto render report.qmd -P site:north
+```
+
+### Includes and shortcodes
+
+Shared prose is factored into a file and pulled in with an
+include shortcode, so that boilerplate lives in one place.
+
+```markdown
+{{< include _disclaimer.qmd >}}
+
+{{< meta title >}}
+```
+
+### Profiles
+
+A profile selects a named set of options, so that one project
+can build a draft and a final variant without editing the
+YAML.
+
+```bash
+quarto render --profile draft
+```
+
+## Worked example: a two-page analysis website
+
+We fold `enrollment-report.qmd` into a small website with a
+landing page and the report, sharing one disclaimer across
+both. Our task is to build and preview a project rather than a
+single file.
+
+We create a `_quarto.yml` that declares a website and its
+navigation:
+
+```yaml
+project:
+  type: website
+website:
+  title: 'Enrollment analysis'
+  navbar:
+    left:
+      - href: index.qmd
+        text: Home
+      - href: enrollment-report.qmd
+        text: Report
+```
+
+We factor the shared disclaimer into `_disclaimer.qmd` and
+include it on both pages:
+
+```markdown
+{{< include _disclaimer.qmd >}}
+```
+
+We then build and preview the whole project:
+
+```bash
+quarto preview
+```
+
+We observe that both pages share the navbar and the
+disclaimer, and that editing the disclaimer once updates both.
+The report we wrote across Days 1 through 3 is now one page of
+a coherent site, built by the same `quarto` command that
+rendered it as a single file. We have moved from a document to
+a project without changing the report itself.
+
+## Homework
+
+Attempt each problem in your own environment before checking
+the solution.
+
+1. **A minimal project.** Create a directory with a
+   `_quarto.yml` declaring a website and two `.qmd` pages.
+   Render the project and name the output directory.
+
+2. **Navigation.** Add a navbar with links to both pages and
+   confirm the links work in the preview.
+
+3. **A book.** Convert the same two pages into a book project
+   with a chapter list. What changes in `_quarto.yml`?
+
+4. **A parameter.** Add a `params:` entry to a report and
+   render it twice with different values using `-P`. Describe
+   what differs in the output.
+
+5. **An include.** Factor a shared paragraph into a partial
+   and include it on two pages with the include shortcode.
+
+6. **A profile.** Define a `draft` profile and render with
+   `--profile draft`. State one option you varied between
+   default and draft.
+
+7. **Manuscript.** Initialize a manuscript project and name
+   the file that holds the article.
+
+## Solutions
+
+**Problem 1.** Placeholder. Show the `_quarto.yml` website
+block and name the `_site` output directory.
+
+**Problem 2.** Placeholder. Show the navbar block and confirm
+the links.
+
+**Problem 3.** Placeholder. Show `type: book` with a
+`chapters:` list replacing the website block.
+
+**Problem 4.** Placeholder. Show `params:` and two
+`-P` renders and describe the differing output.
+
+**Problem 5.** Placeholder. Show the partial file and the
+`{{< include >}}` shortcode.
+
+**Problem 6.** Placeholder. Show a `draft` profile file and
+the option it varies.
+
+**Problem 7.** Placeholder. Show `type: manuscript` and name
+`article.qmd`.
+
+## What's next
+
+Day 5 closes the loop from source to published, reproducible
+output. We shall use freeze and caching to stabilize a build,
+integrate renv for dependency pinning, publish with
+`quarto publish` to Netlify, GitHub Pages, and Quarto Pub,
+wire continuous integration with GitHub Actions, and apply a
+systematic `.Rmd`-to-`.qmd` migration checklist to a whole
+project. Keep the website from the worked example; Day 5
+publishes it.

@@ -1,0 +1,222 @@
+# Day 5: Reproducibility, Publishing, and Migrating a Real Project {#sec-day5}
+
+## Learning objectives
+
+By the end of this day you should be able to:
+
+- Use freeze to avoid re-executing unchanged computations.
+- Integrate renv so that a project's package versions are
+  pinned.
+- Publish a project with `quarto publish` to Netlify, GitHub
+  Pages, and Quarto Pub.
+- Configure continuous integration with GitHub Actions.
+- Apply a systematic checklist to migrate an `.Rmd` project to
+  `.qmd`.
+- Judge when a migration is complete and reproducible.
+
+## Lecture
+
+We begin at the end of the pipeline: making a build stable,
+publishing it, and keeping it reproducible. That is, we turn a
+project that renders on our machine into one that renders the
+same way elsewhere and appears on the web.
+
+### Freeze and caching
+
+Freeze records the results of computations so that Quarto does
+not re-execute unchanged cells on every render. Recall that R
+Markdown offered per-chunk `cache = TRUE`; Quarto adds
+project-level `freeze`, which is what a website or book needs
+for a fast, deterministic build.
+
+```yaml
+execute:
+  freeze: auto
+```
+
+We note that `freeze: auto` re-executes a document only when
+its source changes, and that the frozen results are committed
+to version control so that a continuous-integration build need
+not run R at all.
+
+### renv integration
+
+Reproducibility of results requires reproducibility of
+packages. We pin package versions with renv and restore them
+in any environment.
+
+```{r}
+#| eval: false
+renv::init()
+renv::snapshot()
+renv::restore()
+```
+
+We observe that `renv.lock` records exact versions, so a
+collaborator or a CI runner rebuilds the same environment. The
+*Reproducible Research for the Health Sciences* volume develops
+this in depth.
+
+### Publishing
+
+Quarto publishes to several targets with one command. We show
+the three the reader is most likely to use.
+
+```bash
+quarto publish quarto-pub
+quarto publish gh-pages
+quarto publish netlify
+```
+
+We note that `quarto publish` renders, uploads, and records
+the target in `_publish.yml` so that a later publish reuses
+the same destination.
+
+### Continuous integration with GitHub Actions
+
+For a project under version control, a GitHub Actions workflow
+renders and deploys on every push, which is how this book is
+built. We note that with freeze committed, the workflow need
+not install R packages.
+
+```yaml
+# .github/workflows/publish.yml
+on:
+  push:
+    branches: [main]
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: quarto-dev/quarto-actions/setup@v2
+      - run: quarto render
+```
+
+We note that the Git and GitHub mechanics this assumes are the
+subject of the companion *Git and GitHub for Biostatistics*
+volume; here we use them without teaching them.
+
+### A migration checklist
+
+We close the week with the systematic procedure for migrating
+an existing R Markdown project. We apply it as a checklist
+rather than an ad hoc edit:
+
+1. Rename `.Rmd` files to `.qmd`.
+2. Convert `output:` YAML to `format:`.
+3. Move header-line chunk options to `#|` cell options.
+4. Replace `knitr::opts_chunk$set` with an `execute:` block.
+5. Convert `bookdown`-style cross-references to `@fig-`,
+   `@tbl-`, and `@sec-`.
+6. Add a `_quarto.yml` if the project has more than one
+   document.
+7. Set `freeze: auto` and pin packages with renv.
+8. Render, compare against the old output, and publish.
+
+## Worked example: migrating a small project end to end
+
+We migrate a two-document R Markdown project, an analysis and a
+README site, into a published Quarto website, applying the
+checklist in order. Our task is to end with a reproducible,
+published site whose output matches the original.
+
+We rename the sources and convert their headers:
+
+```bash
+git mv analysis.Rmd analysis.qmd
+git mv index.Rmd index.qmd
+```
+
+We move each chunk's options inside with the `#|` syntax and
+lift the shared setup chunk into `_quarto.yml`:
+
+```yaml
+execute:
+  echo: false
+  freeze: auto
+```
+
+We pin the environment and render:
+
+```bash
+Rscript -e 'renv::snapshot()'
+quarto render
+```
+
+We compare the rendered pages against the original HTML and
+confirm that the tables and figures match. Finally we publish:
+
+```bash
+quarto publish netlify
+```
+
+We observe that the site is now live, its computations are
+frozen and committed, and its package versions are pinned in
+`renv.lock`. A CI runner or a colleague can reproduce the same
+site from the repository alone. The project that began as two
+`.Rmd` files is now a reproducible, published Quarto site, and
+the migration followed a checklist rather than guesswork.
+
+## Homework
+
+Attempt each problem in your own environment before checking
+the solution.
+
+1. **Turn on freeze.** Add `freeze: auto` to a project, render
+   twice, and describe what the second render skips.
+
+2. **Pin packages.** Run `renv::init()` and `renv::snapshot()`
+   in a project and name the file that records the versions.
+
+3. **Publish to Quarto Pub.** Publish a single document with
+   `quarto publish quarto-pub` and record the resulting URL.
+
+4. **Publish a site.** Publish the Day 4 website to a target of
+   your choice and confirm it loads.
+
+5. **A CI workflow.** Write a minimal GitHub Actions workflow
+   that renders the project on push. Which two actions does it
+   use?
+
+6. **Apply the checklist.** Take a real one-file `.Rmd` and
+   migrate it to `.qmd` following the eight-step checklist.
+   Record which steps applied and which did not.
+
+7. **Verify reproducibility.** Delete the output directory,
+   render from a clean state, and confirm the output matches.
+   What role did freeze and renv play?
+
+## Solutions
+
+**Problem 1.** Placeholder. Describe the second render reusing
+frozen results.
+
+**Problem 2.** Placeholder. Name `renv.lock`.
+
+**Problem 3.** Placeholder. Show `quarto publish quarto-pub`
+and record the URL.
+
+**Problem 4.** Placeholder. Show the publish command and
+confirm the site loads.
+
+**Problem 5.** Placeholder. Identify the checkout and
+quarto-actions setup steps.
+
+**Problem 6.** Placeholder. Record which of the eight steps
+applied to the chosen document.
+
+**Problem 7.** Placeholder. Confirm the clean render matches
+and attribute it to freeze and renv.
+
+## What's next
+
+The week is complete. The reader can render, extend, and
+publish Quarto documents and migrate an existing R Markdown
+project. From here, the reproducibility thread continues into
+the companion *Reproducible Research for the Health Sciences*
+volume, which develops renv, Docker, and validated pipelines;
+and the version-control mechanics this chapter assumed are the
+subject of *Git and GitHub for Biostatistics*. We began the
+week rendering a colleague's `.Rmd` unchanged; we end it
+publishing a reproducible Quarto project of our own.

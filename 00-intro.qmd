@@ -1,0 +1,96 @@
+# How to use this book {.unnumbered}
+
+We begin with a short orientation. In this chapter we set
+out the daily cadence, the chapter template, and the
+conventions used throughout, so that the reader knows what
+to expect.
+
+## The daily cadence
+
+Each day has the same shape:
+
+- **Lecture content (~1 hour).** Read the chapter, running
+  each command and rendering each document in your own
+  environment as you encounter it. Do not skip the renders;
+  the chapter is designed to be read with a terminal open and
+  a scratch project at hand.
+- **Homework (~2 hours).** Five to eight problems, with worked
+  solutions at the end of the chapter. Attempt each problem
+  before checking the solution.
+
+The cadence assumes one chapter per day for five consecutive
+days. The workshop may be compressed (two chapters per day
+across two-and-a-half days) or expanded (one chapter per week
+across a month) depending on the reader's other commitments;
+we leave the choice to the reader.
+
+## Chapter template
+
+Each chapter follows a five-section template, and we shall
+keep to it consistently:
+
+1. **Learning objectives.** A bulleted list of what the reader
+   should be able to do by the end of the day.
+2. **Lecture.** The substantive content for the day, with
+   commands to run and documents to render.
+3. **Worked example.** A small but realistic authoring
+   scenario that uses the day's content end to end, most often
+   translating or extending a familiar R Markdown document.
+4. **Homework.** Problems organized from easier to harder.
+5. **Solutions.** Worked solutions to all homework problems.
+   Read only after attempting the problem.
+
+There are no quizzes, no examinations, and no tests in this
+book. Self-assessment proceeds entirely through the homework
+solutions.
+
+## A note on the two tools
+
+The book concerns two related but distinct things:
+
+- **R Markdown** is the authoring system the reader already
+  knows. It couples the knitr engine to Pandoc and renders
+  `.Rmd` documents. We treat it as the starting point, not the
+  subject.
+- **Quarto** is the newer system the reader is moving to. It
+  is a standalone command-line tool that renders `.qmd`
+  documents, shares R Markdown's knitr engine, and adds a
+  uniform model for many output formats and project types.
+  Quarto is the subject of every chapter.
+
+Keeping the distinction clear from the outset prevents a
+common confusion in which the two are treated as one, or in
+which Quarto is assumed to be an R package rather than an
+independent tool.
+
+## Conventions
+
+The visual cues used throughout the book are described on the
+[Conventions](conventions.qmd) page. In brief:
+
+- Commands you type follow a `$` prompt; output has no prompt.
+- Placeholders you replace are written in `<angle-brackets>`.
+- Document source is shown in fenced blocks labeled by
+  language.
+- Command lines and file listings are wrapped at 78
+  characters.
+
+## Companion volumes
+
+This workshop sits within the rgtlab curriculum sequence. The
+two preparatory boot camps precede it, and two follow-on
+volumes extend it:
+
+- *R for Biostatistics*
+  (<https://r-bootcamp.rgtlab.org>)
+- *Git and GitHub for Biostatistics*
+  (<https://git-bootcamp.rgtlab.org>)
+- *Biostatistics Practicum*
+  (<https://rgtlab.org/practicum>)
+- *Reproducible Research for the Health Sciences*
+  (<https://reproducibility.rgtlab.org>)
+
+The end of Chapter 5 describes how the publishing material
+here connects to *Git and GitHub for Biostatistics* and how
+the reproducibility thread continues into *Reproducible
+Research for the Health Sciences*.

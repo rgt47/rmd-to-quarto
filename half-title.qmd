@@ -1,0 +1,3 @@
+# Transitioning from R Markdown to Quarto {.unnumbered .unlisted}
+
+*A One-Week Workshop for R Markdown Users.*

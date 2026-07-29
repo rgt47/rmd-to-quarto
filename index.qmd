@@ -1,0 +1,64 @@
+# Welcome {.unnumbered .unlisted}
+
+This is the online version of **Transitioning from R Markdown
+to Quarto: A One-Week Workshop** by The rgtlab Curriculum
+Project, a short workshop for analysts who already write R
+Markdown and wish to move their work to Quarto.
+
+The book covers everything an experienced R Markdown user
+needs to become fluent in Quarto over one week: installing
+Quarto and rendering an existing `.Rmd` unchanged; the
+document anatomy that differs from R Markdown, including the
+`#|` cell-option syntax and the execution model; output
+formats, figures, tables, and native cross-references;
+projects at scale, from websites to books to manuscripts;
+and reproducible publishing, with a systematic checklist for
+migrating a real project. It is designed for **five
+consecutive days** of work: one hour of lecture content each
+day, two hours of homework, no examinations.
+
+The organizing principle is that Quarto is a superset of
+what R Markdown already does, so the transition is a matter
+of translation and extension rather than of starting over.
+An analyst who can write an `.Rmd` today already knows most
+of what Quarto asks; this book maps the familiar constructs
+onto their Quarto equivalents and then shows what Quarto adds.
+Every chapter opens with a concrete authoring problem,
+develops the Quarto mechanism that addresses it, and returns
+to the problem to judge what the mechanism did and did not
+solve.
+
+The workshop is a companion to the rgtlab curriculum
+sequence:
+
+- **R for Biostatistics: A One-Week Boot Camp**
+  (<https://r-bootcamp.rgtlab.org>), the preparatory volume
+  for R.
+- [*Git and GitHub for Biostatistics*](https://git-bootcamp.rgtlab.org),
+  the preparatory volume for version control, on which the
+  publishing chapter of this workshop draws.
+- [*Biostatistics Practicum*](https://rgtlab.org/practicum),
+  workflow infrastructure (Git in depth, Docker, renv,
+  Quarto, CDISC) that builds directly on this workshop.
+- [*Reproducible Research for the Health Sciences*](https://reproducibility.rgtlab.org),
+  the reproducibility volume that extends the freeze,
+  caching, and publishing material introduced here.
+
+A reader who has completed *R for Biostatistics* and *Git and
+GitHub for Biostatistics* arrives at this workshop ready to
+place a Quarto project under version control and publish it
+reproducibly by the end of the week.
+
+See the [Preface](preface.qmd) for the design rationale
+and the [Conventions](conventions.qmd) page for visual
+cues.
+
+## License
+
+This book is licensed under
+[Creative Commons
+Attribution-NonCommercial-NoDerivatives 4.0 International](https://creativecommons.org/licenses/by-nc-nd/4.0/).
+
+Code samples are licensed under
+[Creative Commons CC0 1.0 Universal](https://creativecommons.org/publicdomain/zero/1.0/),
+i.e. public domain.
