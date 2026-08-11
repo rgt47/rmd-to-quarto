@@ -6,7 +6,7 @@ project:
 
 book:
   title: 'Transitioning from R Markdown to Quarto'
-  subtitle: 'A One-Week Workshop for R Markdown Users'
+  subtitle: 'A One-Week Boot Camp for R Markdown Users'
   author: 'The rgtlab Curriculum Project'
   date: today
   date-format: 'YYYY-MM-DD'

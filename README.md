@@ -1,4 +1,4 @@
-# Transitioning from R Markdown to Quarto: A One-Week Workshop
+# Transitioning from R Markdown to Quarto: A One-Week Boot Camp
 *2026-07-28 19:40 PDT*
 
 A short workshop for analysts who already write R Markdown and

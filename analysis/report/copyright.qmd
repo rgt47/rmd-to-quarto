@@ -1,6 +1,6 @@
 # Copyright {.unnumbered}
 
-*Transitioning from R Markdown to Quarto: A One-Week Workshop* by
+*Transitioning from R Markdown to Quarto: A One-Week Boot Camp* by
 Ronald 'Ryy' G. Thomas is licensed under a
 [Creative Commons Attribution-NonCommercial-NoDerivatives
 4.0 International
@@ -14,7 +14,7 @@ i.e. the public domain.
 To cite this book, please use:
 
 > Thomas, R. G. (2026). *Transitioning from R Markdown to
-> Quarto: A One-Week Workshop*. Available at
+> Quarto: A One-Week Boot Camp*. Available at
 > <https://rmd-to-quarto.rgtlab.org>.
 
 ::: {.content-visible when-format='pdf'}

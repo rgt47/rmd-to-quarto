@@ -1,7 +1,7 @@
 # Welcome {.unnumbered .unlisted}
 
 This is the online version of **Transitioning from R Markdown
-to Quarto: A One-Week Workshop** by The rgtlab Curriculum
+to Quarto: A One-Week Boot Camp** by The rgtlab Curriculum
 Project, a short workshop for analysts who already write R
 Markdown and wish to move their work to Quarto.
 
