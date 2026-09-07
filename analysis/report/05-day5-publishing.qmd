@@ -62,11 +62,11 @@ this in depth.
 
 Two rgtlab tools formalize this step. `zzcollab`
 (<https://github.com/rgt47/zzcollab>) wraps Docker and renv into a
-reproducible research compendium, so that `zzc` builds the
-container in which the book renders and `make check-renv`
+reproducible research compendium. The `zzc` command builds the
+container in which the book renders, and `make check-renv`
 validates the lockfile against the source. `zzrenvcheck`
 (<https://github.com/rgt47/zzrenvcheck>) checks that every package
-the source actually uses is both declared and locked, which
+the source actually uses is both declared and locked. This
 catches the silent dependency that renders on the author's machine
 but fails in continuous integration.
 :::
@@ -109,11 +109,12 @@ jobs:
 
 We note that the Git and GitHub mechanics this assumes are the
 subject of the companion *Git and GitHub for Biostatistics*
-volume; here we use them without teaching them. When the reader
-commits and publishes by hand, the `zzgit` tool
+volume. Here we use them without teaching them.
+
+When the reader commits and publishes by hand, the `zzgit` tool
 (<https://github.com/rgt47/zzgit>) offers an interactive add,
-commit, and push that first scans the staged diff for secrets
-with gitleaks, which guards against publishing a credential by
+commit, and push. It first scans the staged diff for secrets
+with gitleaks. This guards against publishing a credential by
 accident along with a rendered site.
 
 ### A migration checklist
@@ -234,8 +235,8 @@ The week is complete. The reader can render, extend, and
 publish Quarto documents and migrate an existing R Markdown
 project. From here, the reproducibility thread continues into
 the companion *Reproducible Research for the Health Sciences*
-volume, which develops renv, Docker, and validated pipelines;
-and the version-control mechanics this chapter assumed are the
-subject of *Git and GitHub for Biostatistics*. We began the
-week rendering a colleague's `.Rmd` unchanged; we end it
-publishing a reproducible Quarto project of our own.
+volume, which develops renv, Docker, and validated pipelines.
+The version-control mechanics this chapter assumed are, in
+turn, the subject of *Git and GitHub for Biostatistics*. We
+began the week rendering a colleague's `.Rmd` unchanged. We end
+it publishing a reproducible Quarto project of our own.

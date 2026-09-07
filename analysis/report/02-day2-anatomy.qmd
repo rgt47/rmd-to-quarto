@@ -108,8 +108,8 @@ explicitly when needed.
 engine: knitr
 ```
 
-We note that a document mixing R and Python is possible, but
-that the everyday R Markdown user will stay on knitr, and
+We note that mixing R and Python in one document is possible.
+The everyday R Markdown user will stay on knitr, however, and
 nothing changes for them.
 
 ### Inline code
