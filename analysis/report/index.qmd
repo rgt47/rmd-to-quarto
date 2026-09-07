@@ -2,31 +2,32 @@
 
 This is the online version of **Transitioning from R Markdown
 to Quarto: A One-Week Boot Camp** by The rgtlab Curriculum
-Project, a short workshop for analysts who already write R
+Project. We wrote it for analysts who already write R
 Markdown and wish to move their work to Quarto.
 
-The book covers everything an experienced R Markdown user
-needs to become fluent in Quarto over one week: installing
-Quarto and rendering an existing `.Rmd` unchanged; the
-document anatomy that differs from R Markdown, including the
-`#|` cell-option syntax and the execution model; output
-formats, figures, tables, and native cross-references;
-projects at scale, from websites to books to manuscripts;
-and reproducible publishing, with a systematic checklist for
-migrating a real project. It is designed for **five
-consecutive days** of work: one hour of lecture content each
-day, two hours of homework, no examinations.
+We cover what an experienced R Markdown user needs in order
+to become fluent in Quarto over one week. That is,
+installing Quarto and rendering an existing `.Rmd` file
+unchanged; the document anatomy that differs from R
+Markdown, including the `#|` cell-option syntax and the
+execution model; output formats, figures, tables, and native
+cross-references; projects at scale, from websites to books
+to manuscripts; and reproducible publishing, with a
+systematic checklist for migrating a real project. The book
+is designed for **five consecutive days** of work: one hour
+of lecture content each day, two hours of homework, no
+examinations.
 
-The organizing principle is that Quarto is a superset of
-what R Markdown already does, so the transition is a matter
-of translation and extension rather than of starting over.
-An analyst who can write an `.Rmd` today already knows most
-of what Quarto asks; this book maps the familiar constructs
-onto their Quarto equivalents and then shows what Quarto adds.
-Every chapter opens with a concrete authoring problem,
-develops the Quarto mechanism that addresses it, and returns
-to the problem to judge what the mechanism did and did not
-solve.
+Our organizing principle is that Quarto is a superset of
+what R Markdown already does. The transition is therefore a
+matter of translation and extension rather than of starting
+over. An analyst who can write an `.Rmd` file today already
+knows most of what Quarto asks. We map the familiar
+constructs onto their Quarto equivalents and then show what
+Quarto adds beyond them. Each chapter opens with a concrete
+authoring problem, develops the Quarto mechanism that
+addresses it, and returns to the problem to judge what the
+mechanism did and did not solve.
 
 The workshop is a companion to the rgtlab curriculum
 sequence:
@@ -49,9 +50,9 @@ GitHub for Biostatistics* arrives at this workshop ready to
 place a Quarto project under version control and publish it
 reproducibly by the end of the week.
 
-See the [Preface](preface.qmd) for the design rationale
-and the [Conventions](conventions.qmd) page for visual
-cues.
+We refer the reader to the [Preface](preface.qmd) for the
+design rationale and to the [Conventions](conventions.qmd)
+page for the visual cues used throughout.
 
 ## License
 

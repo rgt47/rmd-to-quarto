@@ -46,7 +46,7 @@ solutions.
 
 ## A note on the two tools
 
-The book concerns two related but distinct things:
+This book concerns two related but distinct things:
 
 - **R Markdown** is the authoring system the reader already
   knows. It couples the knitr engine to Pandoc and renders

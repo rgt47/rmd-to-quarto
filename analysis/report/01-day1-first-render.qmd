@@ -125,9 +125,9 @@ quarto preview report.qmd
 ### Project anatomy
 
 A single document needs no project, but understanding the
-minimal project anatomy now pays off on Day 4. We note the
-pieces: the `.qmd` source, an optional `_quarto.yml`
-configuration, and the rendered output directory.
+minimal project anatomy now pays off on Day 4. The pieces are
+the `.qmd` source, an optional `_quarto.yml` configuration,
+and the rendered output directory.
 
 ```text
 report/
